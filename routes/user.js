@@ -13,4 +13,10 @@ router.get('/', function(req, res, next) {
   res.render('index', {product,admin:false });
 });
 
+router.get('/login',(req,res,next)=>{
+  res.render('login/admin_login',{admin:false})
+})
+
+
+
 module.exports = router;
