@@ -1,36 +1,18 @@
 <header class="header-style">
-        <div class="row">
-            <div class="col-md-6 ">
-                <h1 class="pl-2"><i class='fas fa-paw icon-style'></i>Pet Market shop</h1>
+        <div class="row ">
+            <div class="col-md-6 col-6 justify-content-sm-start">
+                <h1 class="pl-2"><i class='fas fa-paw icon-style'></i>Pet Market</h1>
             </div>
-            <div class="col-lg-6 d-flex flex-row-reverse">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            <div class="col-lg-6 col-6">
+                <nav class="navbar navbar-expand-lg navbar-light float-right ">
+                    <button class="navbar-toggler ml-auto btn1" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon  pull-right "></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#">Admin <span class="sr-only">(current)</span></a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-expanded="false">
-                                    Menu
-                                </a>
-                                <div class="dropdown-menu dropdown bg-info" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Dog</a>
-                                    <a class="dropdown-item" href="#">Cat</a>
-                                    <a class="dropdown-item" href="#">Birds</a>
-                                    <a class="dropdown-item" href="#">Horse</a>
-                                </div>
-                            </li>
-
-                        </ul>
-                        <ul class="navbar-nav mr-auto mx-2 ">
+                    <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
+                        
+                        <ul class="navbar-nav ">
                             <li>
                                 <input class="form-control mr-sm-2 my-2" type="search" placeholder="Search"
                                     aria-label="Search">
@@ -42,15 +24,28 @@
                             </li>
                         </ul>
 
-                        <ul class="navbar-nav mr-auto mx-2 mx-sm-0">
-                            <li class="nav-item">
-                                <button type="button" class="btn btn-success my-2 mx-md-2">Signin</button>
-                            </li>
+                        <ul class="navbar-nav  ">
                             <li class="nav-item">
                                 <button type="button" class="btn btn-success my-2 mx-sm-2">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
                             </li>
+                            <li class="nav-item">
+
+                                <div class="dropdown">
+                                    <button class="btn-success my-2 mx-sm-2 acc-btn dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        name
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </li>
+
                         </ul>
 
                     </div>
@@ -58,5 +53,3 @@
             </div>
         </div>
     </header>
-
-
