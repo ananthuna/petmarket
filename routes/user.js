@@ -5,10 +5,14 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 
  
-  res.render('index', {admin:false });
+  res.render('user/user_body', {admin:false });
 });
 
 router.get('/login',(req,res,next)=>{
+  res.render('login/admin_login',{admin:false})
+})
+
+router.post('/login',(req,res,next)=>{
   res.render('login/admin_login',{admin:false})
 })
 

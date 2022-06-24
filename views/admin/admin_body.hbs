@@ -1,42 +1,48 @@
 <section>
-        <div class="row">
-            <div class="col-md-2 div1">
-
-                <div class="list-group d-flex flex-column ml-3">
-                    <h5 class="list-group-item disabled" aria-current="true">shope name</h5>
-
-                    <a href="#" class="list-group-item list-group-item-action">pet name</a>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="col-md-8 div2 ">
-                <h4>Selling Products</h4>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./pic/guppy.jpeg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Guppy</h5>
-                        <p class="card-text">price:150</p>
-                        <p class="card-text">Breader name</p>
-                        <a href="#" class="btn btn-primary">messg</a>
-                        <a href="#" class="btn btn-primary">watch list</a>
+    <div class="row">
+        <div class="col-md-2 div1">
+            <div class="list-group d-flex flex-column ml-3">
+                <h5 class="list-group-item disabled" aria-current="true">shope name</h5>
+                 <button type="button" class="btn btn-info" id="btn">Add Products</button>
+                    <div id="add_products" style=" display: none;z-index: 2; position: absolute;background: rgb(233, 201, 201);">
+                        <form action="/admin/admin_body" enctype="multipart/form-data" method="post">
+                            <label for="">Pet Name</label>
+                            <input type="text" name="name"  class="form-control">
+        
+                            <label for="">Price</label>
+                            <input type="text" name="price" class="form-control">
+        
+                            <label for="">Breader Name</label>
+                            <input type="text" name="bname" class="form-control">
+        
+                            <label for="">Image</label>
+                            <input type="file" name="Image" class="form-control">
+        
+                            <button type="submit" class="btn btn-successs mt-4">Submit</button>
+                        </form>
                     </div>
-                </div>
+                <a href="#" class="list-group-item list-group-item-action">pet name</a>
             </div>
-
-
-            <div class="col-md-2 div3 d-none d-lg-block">
-                <div class="list-group d-flex flex-column ml-3">
-                    <h5 class="list-group-item disabled" aria-current="true">Messages</h5>
-
-                    <a href="#" class="list-group-item list-group-item-action">pet name</a>
-
-                </div>
-            </div>
-
-
         </div>
-    </section>
+        <div class="col-md-8 div2 ">
+            <h4>Selling Products</h4>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Guppy</h5>
+                    <p class="card-text">price:150</p>
+                    <p class="card-text">Breader name</p>
+                    <a href="#" class="btn btn-primary">messg</a>
+                    <a href="#" class="btn btn-primary">watch list</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 div3 d-none d-lg-block">
+            <div class="list-group d-flex flex-column ml-3">
+                <h5 class="list-group-item disabled" aria-current="true">Messages</h5>
+
+                <a href="#" class="list-group-item list-group-item-action">pet name</a>
+            </div>
+        </div>
+    </div>
+</section>
