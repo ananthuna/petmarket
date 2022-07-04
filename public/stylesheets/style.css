@@ -1,6 +1,18 @@
 .header-style{
-  background: aqua;
+  background: rgb(241, 25, 97);
 }
+
+#head{
+  text-decoration: none !important;
+  color: rgb(241, 176, 206) !important;
+}
+#head:hover{
+  color: rgb(240, 230, 234) !important;
+}
+
+
+
+
 .dropdown-menu{
   display: block;
   width: 100%;
