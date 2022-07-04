@@ -8,14 +8,18 @@
         </div>
         <div class="col-md-8 div2 ">
             <h4>Selling Products</h4>
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="./pic/guppy.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Guppy</h5>
-                    <p class="card-text">price:150</p>
-                    <p class="card-text">Breader name</p>
-                    
-                </div>     
+            <div class="row">
+                {{#each products}}
+                <div class="card p-2 mx-auto my-2 " style="width: 18rem;">
+                    <img class="card-img-top" src="/image/{{this._id}}.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">price:{{price}}</p>
+                        <p class="card-text">Breader: {{bname}}</p>
+
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
         <div class="col-md-2 div3 d-none d-lg-block">
