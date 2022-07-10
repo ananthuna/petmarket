@@ -1,7 +1,7 @@
 <header class="header-style">
     <div class="row">
-        <div class="col-md-6 p-2">
-            <h1 class="pl-4"><i class='fas fa-paw icon-style'></i>Pet Market</h1>
+        <div class="col-md-6 p-2" id="head_title">
+            <a href="/" id="head_icon"><h1 class="pl-4" style="font-family: Arial;"><i id="head_icon" class='fas fa-paw icon-style mx-2'></i><b>Pet Market</b></h1></a>
         </div>
         <div class="col-lg-6 d-flex flex-row-reverse">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -12,16 +12,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
+                       
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link dropdown-toggle menu" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-expanded="false">
-                                Menu
+                                <b>Menu</b>
                             </a>
-                            <div class="dropdown-menu dropdown bg-info" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown bg-wighte" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Dog</a>
+                                <a class="dropdown-item" href="#">Fish</a>
                                 <a class="dropdown-item" href="#">Cat</a>
                                 <a class="dropdown-item" href="#">Birds</a>
                                 <a class="dropdown-item" href="#">Horse</a>
@@ -34,18 +33,18 @@
                                 aria-label="Search">
                         </li>
                         <li>
-                            <button class="btn btn-outline-success mx-md-2 my-md-2 my-sm-0"
+                            <button class="btn btn-info mx-md-2 my-md-2 my-sm-0"
                                 type="submit">Search</button>
                         </li>
                     </ul>
                     <ul class="navbar-nav mr-auto mx-2 mx-sm-0">
-                        <li class=" my-3 mx-md-2">
-                            <a href="/login" id="head"> <b>Signin</b></a>
+                        <li class=" my-3 mx-md-2 menu">
+                            <a href="/login" class="menu"> <b>Signin</b></a>
                             
                         </li>
                         <li >
                         
-                            <a href=""><i id="head" class="fa-solid fa-cart-shopping fa-lg mx-md-2 my-md-4 my-sm-0 cart_style"></i></a>
+                            <a href="/cart"><i  class="fa-solid fa-cart-shopping fa-lg mx-md-2 my-md-4 my-sm-0 cart_style head"></i></a>
                         </li>
                     </ul>
                 </div>

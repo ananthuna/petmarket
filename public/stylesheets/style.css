@@ -1,15 +1,40 @@
 .header-style{
   background: rgb(241, 25, 97);
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  
 }
 
-#head{
+.head{
   text-decoration: none !important;
-  color: rgb(241, 176, 206) !important;
-}
-#head:hover{
-  color: rgb(240, 230, 234) !important;
+  color: rgb(234, 243, 243) !important;
+  transition: transform .2s;  
 }
 
+.head:hover{
+ 
+  transform: scale(1.2);
+}
+#head_icon{
+  text-decoration: none !important;
+  color: rgb(240, 230, 234) !important;
+  
+}
+#head_icon{
+  transition: transform .2s;
+}
+#head_icon:hover{
+  transform: scale(1.2);
+}
+.menu{
+  text-decoration: none !important;
+  color: rgb(234, 243, 243) !important;
+  transition: transform .2s;
+}
+.menu:hover{
+  transform: scale(1.2);
+}
 
 
 
@@ -80,19 +105,26 @@ a:active { text-decoration: none; }
   transition: color .15s
 }
 .div1{
-  width: 5rem;
-  background: white;
+ 
+  background: rgb(235, 226, 226);
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  
+ 
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  
 
+}
+.fixed{
+  position: fixed;
+  z-index: 1;
+}
+
+.scroll{
+  overflow-y: scroll;
 }
 .div2{
   width: 5rem;
@@ -102,7 +134,7 @@ a:active { text-decoration: none; }
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  
+  overflow: auto;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -119,4 +151,58 @@ a:active { text-decoration: none; }
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.card-img{
+  width: 5rem;
+  height: 10rem ;
+}
+.section{
+  overflow: hidden;
+}
+.error{
+  color: red;
+}
+
+.admin_section{
+  padding-top: 4.5rem;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 95%;
+  margin: 2rem;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+
+
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #c4bdbe;
+  color: black;
+  
+
+}
+
+.list_img{
+  width: 5rem;
+  height: 2.5rem;
+}
+
+.edit-form{
+  border: 1px solid   rgb(26, 23, 23);
+  padding: 10px;
+  border-radius: 7px;
+  border-style: none;
+  box-shadow: 0px 2px 10px grey;
 }

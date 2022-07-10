@@ -1,0 +1,28 @@
+<section class="admin_section">
+    <div class="row">
+        <div class="col-md-12 p-5 d-flex justify-content-center">
+
+            <form class="edit-form" action="/admin/edit-product?id={{product._id}}" enctype="multipart/form-data" method="post">
+                <label for="">Pet Name</label>
+                <input type="text" name="name" class="form-control" value="{{product.name}}">
+
+                <label for="">Price</label>
+                <input type="text" name="price" class="form-control" value="{{product.price}}">
+
+                <label for="">Breader Name</label>
+                <input type="text" name="bname" class="form-control" value="{{product.bname}}">
+
+                <label for="">Image</label>
+                <img class="p-2" style="width: 10rem;height:5rem" src="/image/{{id}}.jpg" alt="">
+                <input type="file" name="Image" class="form-control">
+
+               <div class="">
+                 <a href="/admin/product-list"><button type="button" class="btn btn-danger ">Close</button></a>
+                <button type="submit" class="btn btn-primary ">Submit</button>
+               </div>
+            </form>
+
+
+        </div>
+    </div>
+</section>

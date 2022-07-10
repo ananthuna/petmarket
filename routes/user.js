@@ -3,14 +3,22 @@ var express = require('express');
 var router = express.Router();
 var productHelper = require('../helper/product_helper')
 var userHelper = require('../helper/user_helper')
+const verifylogin=(req,res,next)=>{
+  if(req.session.loggedIn){
+    next()
+  }else{
+    res.redirect('/login')
+  }
+}
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   
   productHelper.getAllProducts().then((products) => {
 
+    var admin=req.session.loggedIn
 
-    res.render('user/user_body', { admin:false, products });
+    res.render('user/user_body', { admin, products });
   })
 
 
@@ -19,7 +27,16 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', (req, res, next) => {
-  res.render('login/admin_login')
+  
+  
+  if(req.session.loggedIn){
+    res.redirect('/admin')
+  }else{
+    
+    res.render('login/admin_login',{"error":req.session.err})
+    req.session.err=false
+  }
+  
 })
 
 router.post('/login/admin_login', (req, res, next) => {
@@ -32,6 +49,7 @@ router.post('/login/admin_login', (req, res, next) => {
       
       res.redirect('/admin')
     } else {
+      req.session.err="Invalid username or password"
       res.redirect('/login')
     }
   })
@@ -57,5 +75,11 @@ router.get('/logout',(req,res,next)=>{
   res.redirect('/')
 })
 
+router.get('/cart',verifylogin,(req,res,next)=>{
+  res.render('user/cart')
+})
+
+
 
 module.exports = router;
+  

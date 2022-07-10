@@ -11,4 +11,12 @@ $(document).ready(function(){
         $("#signup_form").toggle();
       });
 
+      $("#edit").click(function(){
+        $("#myModal").toggle();
+      });
+
+    $('#cls').click(function(){
+        $('#myModal').hide();
+    })
+
 })
