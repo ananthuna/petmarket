@@ -1,0 +1,187 @@
+<div class="container py-5">
+    <!-- For demo purpose -->
+    <div class="row mb-4 py-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-6"> Payment Forms</h1>
+        </div>
+    </div> <!-- End -->
+    <div class="row pay">
+        <div class="col-md-6">
+            <!--start-->
+
+            <div class="card mb-4" id="card-address">
+                <div class="card-header py-3">
+                    <h5 class="mb-0 text-font text-uppercase">Delivery address</h5>
+                </div>
+                <div class="card-body">
+                    <p id="addressid"></p>
+                    <form id="formid" action="/admin/add-address" method="post">
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" name="fname" id="fname" class="form-control" />
+                                    <label class="form-label" for="form11Example1">First name</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" name="lname" id="lname" class="form-control" />
+                                    <label class="form-label" for="form11Example2">Last name</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="address" id="address" class="form-control" />
+                            <label class="form-label" for="form11Example4">Address</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" name="email" id="email" class="form-control" />
+                            <label class="form-label" for="form11Example5">Email</label>
+                        </div>
+
+                        <!-- Number input -->
+                        <div class="form-outline mb-4">
+                            <input type="number" name="phone" id="phone" class="form-control" />
+                            <label class="form-label" for="form11Example6">Phone</label>
+                        </div>
+                        <a href="#" class="tab-link" data-div="div-one"> <button type="submit" class="btn btn-info">Add
+                                address</button></a>
+
+
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+            <!--div one start-->
+
+
+            <!--div one end-->
+
+            <div class="div-one  content">
+                <div id="summaryid">
+
+                    {{#each products}}
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                            <img src="/image/{{this.product._id}}.jpg" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                            <h6 class="text-muted">{{this.product.name}}</h6>
+                            <h6 class="text-black mb-0">{{this.product.bname}}</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                            <h6 class="mb-0">{{this.product.price}}</h6>
+                        </div>
+
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                            <button class="btn btn-link px-2"
+                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)"
+                                id="dec{{this.product._id}}">
+                                <i class="fas fa-minus"></i>
+                            </button>
+
+                            <input id="{{this.product._id}}" name="quantity" value="{{this.quantity}}"
+                                class="quantity" />
+
+                            <button class="btn btn-link px-2"
+                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                            <a href="/admin/remove-item?id={{this._id}}&proId={{this.product._id}}"
+                                class="text-muted"><i class="fas fa-times"></i></a>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+
+                    {{/each}}
+                </div>
+                <a href="#" class="tab-link" data-div="div-three"><button id="orderSummary"
+                        class="btn btn-warning float-right">CONTINUE</button></a>
+            </div>
+            <!--div two start-->
+            <div class="div-two  content">
+                Div #2
+                <a href="#" class="tab-link" data-div="div-three">Link Three</a>
+            </div>
+            <!--div two end-->
+            <!--div three start-->
+            <div class="div-three content">
+                <div class="card mb-4" id="card-address">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0 text-font text-uppercase">Order Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <p id="summaryid" style="color: green;">Order conformed</p>
+
+                    </div>
+                </div>
+
+
+                <div class="card mb-4" id="card-address">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0 text-font text-uppercase">Delivery address</h5>
+                    </div>
+                    <div class="card-body">
+                        <p id="addressid"></p>
+                        <form id="paymentid" action="/admin/payment-method" method="post">
+
+                            <input type="radio" id="cod" name="paymentMethod" value="COD">
+                            <label for="cod">COD</label><br>
+                            <input type="radio" id="netbanking" name="paymentMethod" value="netBanking">
+                            <label for="netbanking">Net Banking</label><br>
+                            <input type="radio" id="upi" name="paymentMethod" value="upi">
+                            <label for="upi">UPI</label><br>
+                            <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+                            <label for="paypal">Paypal</label><br>
+                            <a href="#" class="tab-link" data-div="div-four"><button id="paymentMethod"
+                                    class="btn btn-warning float-right">CONTINUE</button< /a>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--div three end-->
+            <!--div four start-->
+            <div class="div-four content">
+                Div #4
+                <a href="#" class="tab-link" data-div="div-five">Link Five</a>
+            </div>
+            <!--div four end-->
+            <div class="div-five content">
+                Div #5
+            </div>
+
+
+
+            <!--end address-->
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Price Details</h3>
+                    <hr>
+                    <h5>Price({{this.cartCount}} item)<span class="float-right">{{cartTotal}}</span></h5>
+                    <br>
+                    <h5>Delivery Charges <span class="float-right" style="color: green;"><b>FREE</b></span></h5>
+                    <hr>
+                    <b>
+                        <h4>Total Payable <span class="float-right">{{cartTotal}}</span></h4>
+                    </b>
+                </div>
+            </div>
+        </div>
+    </div>

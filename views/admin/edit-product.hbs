@@ -13,8 +13,8 @@
                 <input type="text" name="bname" class="form-control" value="{{product.bname}}">
 
                 <label for="">Image</label>
-                <img class="p-2" style="width: 10rem;height:5rem" src="/image/{{id}}.jpg" alt="">
-                <input type="file" name="Image" class="form-control">
+                <img id="img-s" class="p-2" style="width: 10rem;height:5rem" src="/image/{{id}}.jpg" alt="">
+                <input id="img-select" onchange="myFunction(event)" type="file" name="Image" class="form-control">
 
                <div class="">
                  <a href="/admin/product-list"><button type="button" class="btn btn-danger ">Close</button></a>
