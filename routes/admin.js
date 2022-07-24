@@ -175,6 +175,8 @@ router.post('/order-summary/',(req,res)=>{
 })
 
 router.post('/payment-method/',(req,res)=>{
+
+  console.log(req.body)
   res.send('payment page')
 })
 
