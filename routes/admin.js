@@ -173,4 +173,10 @@ router.post('/order-summary/',(req,res)=>{
   res.json({data:true})
 
 })
+
+router.post('/payment-method/',(req,res)=>{
+  res.send('payment page')
+})
+
+
 module.exports = router;

@@ -46,6 +46,24 @@ $(document).ready(function () {
     })
   });
 
+  $("#paymentMethod").submit(function (event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault();
+
+    $.ajax({
+      url: '/admin/payment-method',
+      method: 'post',
+      data: $("#paymentMethod").serialize(),
+      success: (response) => {
+       
+        
+        
+        
+      }
+    })
+  });
+
   $("#orderSummary").click(function () {
 
     
