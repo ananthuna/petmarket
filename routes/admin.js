@@ -12,15 +12,15 @@ const collections = require('../mongodb_conn/collections');
 
 
 /* GET users listing. */
-router.get('/',async function (req, res) {
+router.get('/', async function (req, res) {
   let admin = req.session.loggedIn
   let user = req.session.user
   if (admin) {
-    let cartCount=await userHelper.getCartCount(user._id)
+    let cartCount = await userHelper.getCartCount(user._id)
     productHelper.getAllProducts().then((products) => {
 
 
-      res.render('admin/admin_body', { user, admin, products,cartCount })
+      res.render('admin/admin_body', { user, admin, products, cartCount })
     })
   } else {
 
@@ -64,16 +64,16 @@ router.post('/admin_body', (req, res, next) => {
 
 })
 
-router.get('/product-list', async(req, res) => {
+router.get('/product-list', async (req, res) => {
   let admin = req.session.loggedIn
   let user = req.session.user
 
   if (admin) {
-    let cartCount=await userHelper.getCartCount(user._id)
+    let cartCount = await userHelper.getCartCount(user._id)
     productHelper.getAddedProducts(user).then((products) => {
 
 
-      res.render('admin/product-list', { user, admin, products,cartCount })
+      res.render('admin/product-list', { user, admin, products, cartCount })
     })
   }
 
@@ -91,10 +91,10 @@ router.get('/edit-product/', async (req, res) => {
   let admin = req.session.loggedIn
   let user = req.session.user
   let id = req.query.id
-  let cartCount=await userHelper.getCartCount(user._id)
+  let cartCount = await userHelper.getCartCount(user._id)
   let product = await productHelper.getProductDetails(id)
- 
-  res.render('admin/edit-product', { user, admin, product, id,cartCount })
+
+  res.render('admin/edit-product', { user, admin, product, id, cartCount })
 })
 
 router.post('/edit-product/', (req, res) => {
@@ -113,71 +113,108 @@ router.get('/cart', async (req, res) => {
   var admin = req.session.loggedIn
   var user = req.session.user
   let products = await userHelper.getCartProducts(user._id)
-  let cartCount=await userHelper.getCartCount(user._id)
-  let cartTotal=await userHelper.total(user._id)
+  let cartCount = await userHelper.getCartCount(user._id)
+  let cartTotal = await userHelper.total(user._id)
   console.log(cartCount)
-  res.render('admin/cart', { user, admin, products,cartCount,cartTotal })
-  
+  res.render('admin/cart', { user, admin, products, cartCount, cartTotal })
+
 })
 
 router.get('/add-to-cart/:id', (req, res) => {
 
- 
+
   userHelper.addToCart(req.params.id, req.session.user._id).then(() => {
 
-    res.json({status:true})
+    res.json({ status: true })
 
   })
 })
-router.post('/change-product-quantity/',async(req,res,next)=>{
-  
-  await userHelper.changeProductQuantity(req.body).then(async(count)=>{
-    let total=await userHelper.total(req.session.user._id)
-    
-    res.json({quantity:count[0].quantity,item:count[0].item,total:total.total})
+router.post('/change-product-quantity/', async (req, res, next) => {
+
+  await userHelper.changeProductQuantity(req.body).then(async (count) => {
+    let total = await userHelper.total(req.session.user._id)
+
+    res.json({ quantity: count[0].quantity, item: count[0].item, total: total.total })
   })
 })
 
 router.get('/remove-item', async (req, res) => {
 
- let cartId=req.query.id
- let proId=req.query.proId
-  
-  userHelper.removeCartItem(cartId,proId).then(()=>{
-    
+  let cartId = req.query.id
+  let proId = req.query.proId
+
+  userHelper.removeCartItem(cartId, proId).then(() => {
+
     res.redirect('cart')
   })
-  
-  
+
+
 })
 
-router.get('/place-order',async(req,res)=>{
+router.get('/place-order', async (req, res) => {
   var admin = req.session.loggedIn
   var user = req.session.user
-  let cartCount=await userHelper.getCartCount(user._id)
-  let cartTotal=await userHelper.total(user._id)
+  let cartCount = await userHelper.getCartCount(user._id)
+  let cartTotal = await userHelper.total(user._id)
   let products = await userHelper.getCartProducts(user._id)
+ 
+
+  res.render('admin/place-order', { user, admin, cartCount, cartTotal: cartTotal.total, products: products })
+
+})
+
+router.post('/add-address/', async (req, res) => {
+
+
+  res.json({ added: req.body })
+
+
+
+
+})
+
+router.post('/order-summary/', async (req, res) => {
+  //   let cartProducts=await userHelper.getCartProducts(req.session.user._id)
+
+  //  await userHelper.orderProduct(cartProducts,req.session.user._id).then(()=>{
+
+  //   })
+  res.json({ data: true })
+
+})
+
+router.post('/payment-method/', async (req, res) => {
+  let userId = req.session.user._id
+  let detail = req.body
+  let Total = await userHelper.total(userId)
+  let products = await userHelper.getCartProducts(userId)
+  await userHelper.addOrderDetails(userId, detail,products,Total).then((data) => {
+    
+    let orderId=data.insertedId
+    userHelper.removeCartCollection()
+   if('method=COD'==detail.paymethod){
+    
+    res.json({ success: true, method:'COD'})
+   }else{
+    userHelper.razorpay(orderId,Total.total).then((response)=>{
+      
+      res.json(response)
+
+    })
+   }
+    
+   
+  })
   
-  res.render('admin/place-order', { user, admin,cartCount,cartTotal:cartTotal.total,products:products})
- 
-})
-
-router.post('/add-address/',async(req,res)=>{
-  
- res.json({added:req.body})
- 
-})
-
-router.post('/order-summary/',(req,res)=>{
- 
-  res.json({data:true})
 
 })
 
-router.post('/payment-method/',(req,res)=>{
+router.get('/orderList/', (req, res) => {
+  res.send('order list')
+})
 
-  console.log(req.body)
-  res.send('payment page')
+router.post('/verify_payment/',(req,res)=>{
+  console.log('payment ststus')
 })
 
 

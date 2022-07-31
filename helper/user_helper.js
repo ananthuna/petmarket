@@ -4,6 +4,12 @@ const bcrypt = require('bcrypt')
 const { ObjectId } = require('mongodb')
 const { response } = require('../app')
 const collections = require('../mongodb_conn/collections')
+const Razorpay = require('razorpay');
+
+var instance = new Razorpay({
+    key_id: 'rzp_test_0qmnQXZx2avPrO',
+    key_secret: 'RMiDtNRSRxYYaauU2YdSpQxH',
+});
 module.exports = {
 
     doSignup: (userData) => {
@@ -117,8 +123,8 @@ module.exports = {
             ]).toArray()
 
 
-           
-           resolve(cartItems)
+
+            resolve(cartItems)
         })
     },
     getCartCount: (userId) => {
@@ -198,7 +204,7 @@ module.exports = {
             resolve()
         })
     },
-    total:(userId)=>{
+    total: (userId) => {
         return new Promise(async (resolve, reject) => {
 
             let cartTotal = await db.get().collection(collections.cart_collection).aggregate([
@@ -224,17 +230,17 @@ module.exports = {
                 },
                 {
                     $project: {
-                        
+
                         quantity: 1,
-                        price: {$toInt:{ $arrayElemAt: ['$product.price', 0] }},
+                        price: { $toInt: { $arrayElemAt: ['$product.price', 0] } },
 
 
                     }
                 },
                 {
-                    $group:{
-                        _id:null,
-                        total:{$sum:{$multiply:['$quantity','$price']}}
+                    $group: {
+                        _id: null,
+                        total: { $sum: { $multiply: ['$quantity', '$price'] } }
                     }
                 }
 
@@ -242,8 +248,59 @@ module.exports = {
             ]).toArray()
 
 
-           
-           resolve(cartTotal[0])
+
+            resolve(cartTotal[0])
+        })
+    },
+    addOrderDetails: (userId, orderDetails, products, Total) => {
+        console.log(Total.total)
+
+        let orderobj = {
+            userId: ObjectId(userId),
+            details: orderDetails,
+            productsDetails: products,
+            cartTotal: Total.total,
+            Date: new Date()
+        }
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.order_collection).insertOne(orderobj).then((data) => {
+                resolve(data)
+            })
+        })
+    },
+    removeCartCollection: () => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.cart_collection).drop().then((data) => {
+                resolve(data)
+            })
+        })
+    },
+    razorpay: (orderId, total) => {
+        return new Promise((resolve, reject) => {
+            
+            let amount=total*100
+            var option = {
+                amount: amount,
+                currency: "INR",
+                receipt: ""+orderId,
+                notes: {
+                    key1: "value3",
+                    key2: "value2"
+                }
+            }
+            instance.orders.create(option, function (err, order) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('New order:', order)
+                    resolve(order)
+                }
+
+            })
+
         })
     }
+
+
+
 }

@@ -148,17 +148,14 @@
                     </div>
                     <div class="card-body">
 
-                        <form id="paymentid" action="/admin/payment-method" method="post">
+                        <form id="paymentid">
 
-                            <input type="radio" id="cod" name="paymentMethod" value="COD">
+                            <input type="radio" id="cod" name="method" value="COD" >
                             <label for="cod">COD</label><br>
-                            <input type="radio" id="netbanking" name="paymentMethod" value="netBanking">
+                            <input type="radio" id="netbanking" name="method" value="online">
                             <label for="netbanking">Net Banking</label><br>
-                            <input type="radio" id="upi" name="paymentMethod" value="upi">
-                            <label for="upi">UPI</label><br>
-                            <input type="radio" id="paypal" name="paymentMethod" value="paypal">
-                            <label for="paypal">Paypal</label><br>
-                            <button id="paymentMethod" class="btn btn-warning float-right">CONTINUE</button>
+                            
+                            <button id="paymentMethod" type="submit" class="btn btn-warning float-right">CONTINUE</button>
                         </form>
                     </div>
                 </div>
@@ -180,12 +177,12 @@
                 <div class="card-header">
                     <h3>Price Details</h3>
                     <hr>
-                    <h5>Price({{this.cartCount}} item)<span class="float-right">{{cartTotal}}</span></h5>
+                    <h5>Price({{this.cartCount}} item)<span class="float-right">{{this.cartTotal}}</span></h5>
                     <br>
                     <h5>Delivery Charges <span class="float-right" style="color: green;"><b>FREE</b></span></h5>
                     <hr>
                     <b>
-                        <h4>Total Payable <span class="float-right">{{cartTotal}}</span></h4>
+                        <h4>Total Payable <span class="float-right">{{this.cartTotal}}</span></h4>
                     </b>
                 </div>
             </div>
